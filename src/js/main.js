@@ -1,16 +1,19 @@
 'use strict';
 
-var width = window.innerWidth;
-var height = window.innerHeight;
+document.addEventListener("DOMContentLoaded", function(event) {
 
-var game = new Phaser.Game(width, height, Phaser.AUTO, 'ludum-dare-31-game');
+  var width = '100%';
+  var height = '100%';
 
-window.Utils = require('./utils');
+  var game = new Phaser.Game(width, height, Phaser.AUTO, 'ludum-dare-31-game');
 
-game.state.add('Boot', require('./states/boot'));
-game.state.add('Splash', require('./states/splash'));
-game.state.add('Preloader', require('./states/preloader'));
-game.state.add('Menu', require('./states/menu'));
-game.state.add('Game', require('./states/game'));
+  window.Utils = require('./utils');
 
-game.state.start('Boot');
+  game.state.add('Boot', require('./states/boot'));
+  game.state.add('Splash', require('./states/splash'));
+  game.state.add('Preloader', require('./states/preloader'));
+  game.state.add('Menu', require('./states/menu'));
+  game.state.add('Game', require('./states/game'));
+
+  game.state.start('Boot');
+});

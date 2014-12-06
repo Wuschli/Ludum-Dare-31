@@ -7,12 +7,13 @@ module.exports = Menu;
 Menu.prototype = {
 
   create: function () {
-    var x = this.game.width / 2;
-    var y = this.game.height / 2;
+    var x = this.world.centerX;
+    var y = this.world.centerY;
 
-    var style = { font: "65px Arial", fill: "#ffffff", align: "center" };
+    var style = { font: "65px editundo", fill: "#ffffff", align: "center" };
 
-    this.text = this.add.text(x - 300, y - 200, "Press to Start", style);
+    this.text = this.add.text(x, y, "Press to Start", style);
+    this.text.anchor.setTo(0.5, 0.5);
 
     this.input.onDown.add(this.onDown, this);
   },

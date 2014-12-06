@@ -24,6 +24,6 @@ Boot.prototype = {
       this.game.stage.scale.setScreenSize(true);
     }
 
-    this.game.state.start('Splash');
+    this.game.state.start('Preloader');
   }
 };

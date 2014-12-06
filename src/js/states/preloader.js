@@ -1,5 +1,5 @@
 var Preloader = function (game) {
-  this.ready = false;
+  this.ready = true;
 };
 
 module.exports = Preloader;
@@ -8,6 +8,9 @@ Preloader.prototype = {
 
   preload: function () {
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+    this.load.text('ship_config', 'assets/config/ship.json');
+    this.load.image('unknown_portrait', 'assets/images/unknown_portrait.png');
+    this.load.image('crew_member_info_background', 'assets/images/crew_member_info_background.png');
   },
 
   create: function () {

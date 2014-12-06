@@ -10,7 +10,7 @@ Splash.prototype = {
   },
   onLoadComplete: function () {
     this.sprite = this.add.sprite(this.world.centerX, this.world.centerY, 'splash'); // adding sprite to the center of the screen
-    this.sprite.anchor.setTo(0.5); // Sprites anchor is in the center of it
+    this.sprite.anchor.setTo(0.5, 0.5); // Sprites anchor is in the center of it
     var tween = this.add.tween(this.sprite);
     tween.from({alpha: 0.0});
     tween.onComplete.addOnce(this.onFadeInComplete, this);
