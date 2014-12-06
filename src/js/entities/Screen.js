@@ -7,7 +7,7 @@ var Screen = function(game, gameWorld) {
   this.gameWorld = gameWorld;
 
   this.crewList = this.add(new CrewList(this.game));
-  this.statusDisplay = this.add(new StatusDisplay(this.game, this));
+  this.statusDisplay = this.add(new StatusDisplay(this.game, this.gameWorld));
 
   this.redrawCrewList();
 };
@@ -24,4 +24,5 @@ Screen.prototype.redrawCrewList = function() {
 };
 
 Screen.prototype.update = function(){
+  this.statusDisplay.update();
 };
