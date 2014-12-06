@@ -17,10 +17,10 @@ var Screen = function(game, gameWorld) {
   this.crewList.y = 8;
 
   this.ship.x = Math.floor((this.game.world.width - this.crewList.width) / 2 - this.ship.width / 2);
-  this.ship.y = Math.floor((this.game.world.height - this.menuBar.height) / 2 - this.ship.height / 2);
+  this.ship.y = Math.floor((this.game.world.height - 248) / 2 - this.ship.height / 2);
 
   this.menuBar.x = Math.floor(this.game.world.width / 2);
-  this.menuBar.y = this.game.world.height - this.menuBar.height - 8;
+  this.menuBar.y = this.game.world.height - 248;
 
   this.tooltip = this.add(new Tooltip(this.game, 'Hey, i am a tooltip. Really fancy and... stuff!', 50));
   this.tooltip.x = 100;

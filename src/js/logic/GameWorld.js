@@ -4,7 +4,7 @@ var StarMap = require('./StarMap');
 var GameWorld = function(game) {
   this.game = game;
 
-  this.map = new StarMap();
+  this.map = new StarMap(this);
 
   var ship_config = JSON.parse(game.cache.getText('ship_config'));
   this.ship = new Ship(ship_config, this);
@@ -35,5 +35,6 @@ GameWorld.prototype = {
     if (!hasCaptain) {
       this.game.state.start('GameOver');
     }
+    this.map.update();
   },
 }

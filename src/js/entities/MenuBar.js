@@ -1,5 +1,6 @@
 var StatusDisplay = require('./StatusDisplay');
 var ActionButtons = require('./ActionButtons');
+var StarMap = require('./StarMap');
 
 var MenuBar = function(game, gameWorld) {
   Phaser.Group.call(this, game);
@@ -9,8 +10,10 @@ var MenuBar = function(game, gameWorld) {
   this.statusDisplay.x = Math.floor(-this.game.world.width / 2 + 8 + this.statusDisplay.width / 2);
 
   this.actionButtons = this.add(new ActionButtons(this.game, this.gameWorld));
-  this.actionButtons.x = this.statusDisplay.x + 200;
+  this.actionButtons.x = Math.floor(-this.actionButtons.width / 2);
 
+  this.starMap = this.add(new StarMap(this.game, this.gameWorld));
+  this.starMap.x = Math.floor(this.game.world.width / 2 - 248);
 };
 
 module.exports = MenuBar;
@@ -21,4 +24,5 @@ MenuBar.prototype.constructor = MenuBar;
 MenuBar.prototype.update = function(){
   this.statusDisplay.update();
   this.actionButtons.update();
+  this.starMap.update();
 };
