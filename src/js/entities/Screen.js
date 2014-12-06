@@ -12,14 +12,14 @@ var Screen = function(game, gameWorld) {
   this.ship = this.add(new Ship(this.game, this.gameWorld));
 
   this.redrawCrewList();
-  this.crewList.x = this.game.world.width - 2;
-  this.crewList.y = 2;
+  this.crewList.x = this.game.world.width - 8;
+  this.crewList.y = 8;
 
-  this.ship.x = this.game.world.width / 2 - this.ship.width / 2;
-  this.ship.y = (this.game.world.height - this.menuBar.height) / 2 - this.ship.height / 2;
+  this.ship.x = Math.floor((this.game.world.width - this.crewList.width) / 2 - this.ship.width / 2);
+  this.ship.y = Math.floor((this.game.world.height - this.menuBar.height) / 2 - this.ship.height / 2);
 
-  this.menuBar.x = this.game.world.width / 2 - this.menuBar.width / 2;
-  this.menuBar.y = this.game.world.height - this.menuBar.height;
+  this.menuBar.x = Math.floor(this.game.world.width / 2 - this.menuBar.width / 2);
+  this.menuBar.y = this.game.world.height - this.menuBar.height - 8;
 
 };
 
@@ -32,7 +32,7 @@ Screen.prototype.redrawCrewList = function() {
   this.crewList.redraw(this.gameWorld.ship.crew);
 };
 
-Screen.prototype.update = function(){
+Screen.prototype.update = function() {
   this.redrawCrewList();
   this.menuBar.update();
 };

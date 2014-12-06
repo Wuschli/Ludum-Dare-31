@@ -3,8 +3,8 @@
 var CrewMember = function(name, ship) {
   this.salary = Math.floor(Math.random() * 50) + 100;
   this.money = Math.floor(Math.random() * 350) + 50;
-  this.hungerCost = Math.random() * 0.05;
-  this.thirstCost = Math.random() * 0.10;
+  this.hungerCost = Math.random() * 0.05 + 0.15;
+  this.thirstCost = Math.random() * 0.05 + 0.2;
   this.age = Math.floor(Math.random() * 15) + 25;
   this.salaryPeriod = Math.floor(Math.random() * 7) + 26;
   this.name = name;

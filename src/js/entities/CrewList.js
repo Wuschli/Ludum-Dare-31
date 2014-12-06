@@ -16,6 +16,6 @@ CrewList.prototype.redraw = function(crew) {
   crew.forEach(function(crewMember){
     var memberGroup = self.add(new CrewMember(self.game, crewMember));
     memberGroup.y = yOffset;
-    yOffset += memberGroup.height + 2;
+    yOffset += memberGroup.height + 8;
   });
 };

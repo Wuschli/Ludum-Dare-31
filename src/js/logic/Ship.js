@@ -28,6 +28,8 @@ Ship.prototype = {
   crew: [],
   captain: null,
   position: {}, // not sure how to fill this yet
+  target:{},
+  status: 'landed',
   addCrew: function(newMember){
     newMember.ship = this;
     this.crew.push(newMember);

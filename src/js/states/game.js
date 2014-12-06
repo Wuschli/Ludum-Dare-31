@@ -13,7 +13,7 @@ Game.prototype = {
     this.gameWorld = new GameWorld(this.game);
     this.add.group(new Screen(this.game, this.gameWorld));
     this.worldTicker = this.game.time.create(false);
-    var tickLoop = this.worldTicker.loop(200, this.gameWorld.tick, this.gameWorld, 1);
+    var tickLoop = this.worldTicker.loop(200, this.gameWorld.tick, this.gameWorld, this.gameWorld.timeScale);
     this.worldTicker.start();
   },
 

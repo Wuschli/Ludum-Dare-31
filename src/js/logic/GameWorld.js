@@ -12,6 +12,9 @@ module.exports = GameWorld;
 
 GameWorld.prototype = {
   worldTime: 0,
+  ship: null,
+  map: null,
+  timeScale: 1,
   tick: function(deltaT) {
     this.worldTime += deltaT;
     var hasCaptain = false;
@@ -25,6 +28,4 @@ GameWorld.prototype = {
       this.game.state.start('GameOver');
     }
   },
-  ship: null,
-  map: null,
 }
