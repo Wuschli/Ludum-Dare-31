@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Ideas"
-date: 2014-12-06
+date: 2014-12-06 03:15:00
 ---
 
 ## Welcome to Ludum Dare 31!
