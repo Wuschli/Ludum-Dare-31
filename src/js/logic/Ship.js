@@ -2,10 +2,12 @@
 
 var CrewMember = require('./CrewMember');
 
-var Ship = function(config, gameWorld){
+var Ship = function(config, gameWorld) {
   this.energy = config.energy;
   this.cargo = config.cargo;
   this.gameWorld = gameWorld;
+  this.target = this.gameWorld.map.planets[0];
+  this.position = this.target.position;
 
   var captain = new CrewMember('Captain', this);
   captain.money = config.money;
@@ -15,7 +17,7 @@ var Ship = function(config, gameWorld){
   this.captain = captain;
 
   var crewCount = Math.floor(Math.random() * 3) + 3;
-  for (var i = 0; i < crewCount; i++){
+  for (var i = 0; i < crewCount; i++) {
     this.crew.push(new CrewMember('Crew Member ' + (i + 1), this));
   }
 };
@@ -28,29 +30,29 @@ Ship.prototype = {
   crew: [],
   captain: null,
   position: {}, // not sure how to fill this yet
-  target:{},
+  target: {},
   status: 'landed',
-  addCrew: function(newMember){
+  addCrew: function(newMember) {
     newMember.ship = this;
     this.crew.push(newMember);
   },
-  removeCrew: function(oldMember){
+  removeCrew: function(oldMember) {
     this.crew.remove(oldMember);
     oldMember.ship = null;
   },
-  getFood: function(){
+  getFood: function() {
     var value = 0;
-    this.cargo.forEach(function(cargo){
-      if (cargo.type === 'food'){
+    this.cargo.forEach(function(cargo) {
+      if (cargo.type === 'food') {
         value += cargo.count;
       }
     });
     return value;
   },
-  getDrinks: function(){
+  getDrinks: function() {
     var value = 0;
-    this.cargo.forEach(function(cargo){
-      if (cargo.type === 'drink'){
+    this.cargo.forEach(function(cargo) {
+      if (cargo.type === 'drink') {
         value += cargo.count;
       }
     });

@@ -1,4 +1,4 @@
-var Menu = function () {
+var Menu = function() {
   this.text = null;
 };
 
@@ -6,22 +6,31 @@ module.exports = Menu;
 
 Menu.prototype = {
 
-  create: function () {
+  create: function() {
     var x = this.world.centerX;
     var y = this.world.centerY;
 
-    var style = { font: "65px editundo", fill: "#ffffff", align: "center" };
 
-    this.text = this.add.text(x, y, "Press to Start", style);
+    this.text = this.add.text(x, y, "Press to Start", {
+      font: "65px VT323",
+      fill: "#ffffff",
+      align: "center"
+    });
     this.text.anchor.setTo(0.5, 0.5);
+
+    this.infoText = this.add.text(x, y + 50, this.game.cache.getText('about'), {
+      font: "22px VT323",
+      fill: "#ffffff",
+      align: "center"
+    });
+    this.infoText.anchor.setTo(0.5, 0);
 
     this.input.onDown.add(this.onDown, this);
   },
 
-  update: function () {
-  },
+  update: function() {},
 
-  onDown: function () {
+  onDown: function() {
     this.game.state.start('Game');
   }
 };

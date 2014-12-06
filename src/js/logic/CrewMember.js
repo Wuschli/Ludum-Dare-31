@@ -36,15 +36,15 @@ CrewMember.prototype = {
           var amount = Math.min(self.hunger, cargo.count);
           cargo.count -= amount;
           self.hunger -= amount;
-          console.log(self.name + ' eats ' + amount + ' of ' + cargo.name);
+          // console.log(self.name + ' eats ' + amount + ' of ' + cargo.name);
         }
       });
     }
     if (this.hunger >= 2) {
-      console.log(this.name + ' is almost starving');
+      // console.log(this.name + ' is almost starving');
     }
     if (this.hunger >= 2) {
-      console.log(this.name + ' starved to death');
+      // console.log(this.name + ' starved to death');
       this.die();
     }
 
@@ -55,15 +55,15 @@ CrewMember.prototype = {
           var amount = Math.min(self.thirst, cargo.count);
           cargo.count -= amount;
           self.thirst -= amount;
-          console.log(self.name + ' drinks ' + amount + ' of ' + cargo.name);
+          // console.log(self.name + ' drinks ' + amount + ' of ' + cargo.name);
         }
       });
     }
     if (this.thirst >= 2) {
-      console.log(this.name + ' is almost dying of thirst');
+      // console.log(this.name + ' is almost dying of thirst');
     }
     if (this.thirst >= 2) {
-      console.log(this.name + ' died of thirst');
+      // console.log(this.name + ' died of thirst');
       this.die();
     }
 
@@ -73,16 +73,16 @@ CrewMember.prototype = {
       this.ship.captain.money -= amount;
       this.money += amount;
       if (amount > 0) {
-        console.log(this.name + ' has  payday and earns ' + amount);
+        // console.log(this.name + ' has  payday and earns ' + amount);
         this.timeSinceLastSalary -= this.salaryPeriod;
       }
       else if (amount < this.salary) {
-        console.log('Not enough Credits to pay ' + this.name + ' enough');
+        // console.log('Not enough Credits to pay ' + this.name + ' enough');
         var percentage = amount / this.salary;
         this.timeSinceLastSalary -= Math.floor(this.salaryPeriod * percentage);
       }
       if (this.timeSinceLastSalary > (this.salaryPeriod * 3)){
-        console.log(this.name + ' left the ship.');
+        // console.log(this.name + ' left the ship.');
         this.die();
       }
     }
