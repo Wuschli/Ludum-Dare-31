@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Ideas"
+date: 2014-12-06
+---
+
+## Welcome to Ludum Dare 31!
+Topic for this Jam is "Entire Game in one Screen".
+
+## Used Tools
+
+### Programming
+* Phaser Javascript Game Framework
+* Atom Editor
+* Yeoman Phaser Browserify Generator
+* Terminal :)
+
+### Audio
+* Autotracker
+* bfxr
+
+### Visuals
+* Pixen Editor
+
+## Ideas
+* Space / Sci-fi stuff
+* Simulation / Management thing
+* FIREFLY! (just because i watched it recently and love it)

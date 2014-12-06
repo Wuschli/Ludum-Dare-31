@@ -3,55 +3,55 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('../fonts/opensans-regular-webfont.eot');
-  src: url('../fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/opensans-regular-webfont.woff') format('woff'),
-       url('../fonts/opensans-regular-webfont.ttf') format('truetype'),
-       url('../fonts/opensans-regular-webfont.svg#OpenSansRegular') format('svg');
+  src: url('/assets/fonts/opensans-regular-webfont.eot');
+  src: url('/assets/fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/opensans-regular-webfont.woff') format('woff'),
+       url('/assets/fonts/opensans-regular-webfont.ttf') format('truetype'),
+       url('/assets/fonts/opensans-regular-webfont.svg#OpenSansRegular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('../fonts/opensans-italic-webfont.eot');
-  src: url('../fonts/opensans-italic-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/opensans-italic-webfont.woff') format('woff'),
-       url('../fonts/opensans-italic-webfont.ttf') format('truetype'),
-       url('../fonts/opensans-italic-webfont.svg#OpenSansItalic') format('svg');
+  src: url('/assets/fonts/opensans-italic-webfont.eot');
+  src: url('/assets/fonts/opensans-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/opensans-italic-webfont.woff') format('woff'),
+       url('/assets/fonts/opensans-italic-webfont.ttf') format('truetype'),
+       url('/assets/fonts/opensans-italic-webfont.svg#OpenSansItalic') format('svg');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('../fonts/opensans-bold-webfont.eot');
-  src: url('../fonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/opensans-bold-webfont.woff') format('woff'),
-       url('../fonts/opensans-bold-webfont.ttf') format('truetype'),
-       url('../fonts/opensans-bold-webfont.svg#OpenSansBold') format('svg');
+  src: url('/assets/fonts/opensans-bold-webfont.eot');
+  src: url('/assets/fonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/opensans-bold-webfont.woff') format('woff'),
+       url('/assets/fonts/opensans-bold-webfont.ttf') format('truetype'),
+       url('/assets/fonts/opensans-bold-webfont.svg#OpenSansBold') format('svg');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('../fonts/opensans-bolditalic-webfont.eot');
-  src: url('../fonts/opensans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/opensans-bolditalic-webfont.woff') format('woff'),
-       url('../fonts/opensans-bolditalic-webfont.ttf') format('truetype'),
-       url('../fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format('svg');
+  src: url('/assets/fonts/opensans-bolditalic-webfont.eot');
+  src: url('/assets/fonts/opensans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/opensans-bolditalic-webfont.woff') format('woff'),
+       url('/assets/fonts/opensans-bolditalic-webfont.ttf') format('truetype'),
+       url('/assets/fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format('svg');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('../fonts/opensans-extrabold-webfont.eot');
-  src: url('../fonts/opensans-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/opensans-extrabold-webfont.woff') format('woff'),
-       url('../fonts/opensans-extrabold-webfont.ttf') format('truetype'),
-       url('../fonts/opensans-extrabold-webfont.svg#OpenSansExtrabold') format('svg');
+  src: url('/assets/fonts/opensans-extrabold-webfont.eot');
+  src: url('/assets/fonts/opensans-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/assets/fonts/opensans-extrabold-webfont.woff') format('woff'),
+       url('/assets/fonts/opensans-extrabold-webfont.ttf') format('truetype'),
+       url('/assets/fonts/opensans-extrabold-webfont.svg#OpenSansExtrabold') format('svg');
   font-weight: 800;
   font-style: normal;
 }
@@ -125,7 +125,7 @@ a#forkme_banner {
   width: 138px;
   height: 138px;
   display: block;
-  background: transparent url(../images/fork-sprite.png) 0 0 no-repeat;
+  background: transparent url(/images/fork-sprite.png) 0 0 no-repeat;
   text-indent: -9000px;
   z-index: 3;
 }
@@ -158,7 +158,7 @@ header span.left-tail, header span.right-tail {
   display: block;
   width: 56px;
   height: 105px;
-  background: transparent url(../images/ribbon-tail-sprite.png) 0 0 no-repeat;
+  background: transparent url(/images/ribbon-tail-sprite.png) 0 0 no-repeat;
   position: absolute;
   bottom: -37px;
   z-index: 0;
@@ -186,6 +186,12 @@ header h1 {
   padding: 14px 20px 0;
 }
 
+header h1 a, header h1 a:hover {
+  font-weight: 800;
+  color: #ece4d8;
+  text-decoration: none;
+}
+
 header h2 {
   background-color: #7c334f;
   font: bold italic .85em/1.5 Georgia, Times, “Times New Roman”, serif;
@@ -204,7 +210,7 @@ div#no-downloads {
   padding-bottom: 150px;
   margin: -80px auto -150px;
   z-index: 1;
-  background: transparent url(../images/bg-ramp.jpg) center 171px no-repeat;
+  background: transparent url(/images/bg-ramp.jpg) center 171px no-repeat;
 }
 
 div#no-downloads span.inner {
@@ -212,7 +218,7 @@ div#no-downloads span.inner {
   position: relative;
   height: 197px;
   width: 550px;
-  background: transparent url(../images/download-sprite.png) 0 0 no-repeat;
+  background: transparent url(/images/download-sprite.png) 0 0 no-repeat;
 }
 
 section#downloads a {
@@ -221,7 +227,7 @@ section#downloads a {
   height: 67px;
   width: 275px;
   padding-top: 130px;
-  background: transparent url(../images/download-sprite.png) 0 0 no-repeat;
+  background: transparent url(/images/download-sprite.png) 0 0 no-repeat;
   text-align: center;
   line-height: 1;
   color: #fff;
@@ -259,7 +265,7 @@ section#downloads a.tgz:hover {
 }
 
 span.banner-fix {
-  background: transparent url(../images/download-fallback-bg.png) center top no-repeat;
+  background: transparent url(/images/download-fallback-bg.png) center top no-repeat;
   display: block;
   height: 19px;
   position: absolute;
@@ -276,7 +282,7 @@ section#main_content {
 /* footer */
 
 footer {
-  background: transparent url(../images/footer-ramp.jpg) center -1px no-repeat;
+  background: transparent url(/images/footer-ramp.jpg) center -1px no-repeat;
   padding-top: 104px;
   margin: -94px auto 40px;
   max-width: 560px;
@@ -337,7 +343,7 @@ footer span.left-tail, footer span.right-tail {
   display: block;
   width: 18px;
   height: 29px;
-  background: transparent url(../images/small-ribbon-tail-sprite.png) 0 0 no-repeat;
+  background: transparent url(/images/small-ribbon-tail-sprite.png) 0 0 no-repeat;
   position: absolute;
   bottom: 5px;
   z-index: 0;
@@ -354,7 +360,7 @@ footer span.right-tail {
 }
 
 footer span.octocat {
-  background: transparent url(../images/octocat.png) 0 0 no-repeat;
+  background: transparent url(/images/octocat.png) 0 0 no-repeat;
   display: block;
   width: 30px;
   height: 30px;
@@ -412,7 +418,7 @@ ul {
 
 ul li {
   padding-left: 10px;
-  background: transparent url(../images/chevron.png) left 6px no-repeat;
+  background: transparent url(/images/chevron.png) left 6px no-repeat;
 }
 
 blockquote {
@@ -420,7 +426,7 @@ blockquote {
   margin: 20px 0;
   color: #8b786f;
   padding-left: 1.35em;
-  background: transparent url('../images/blockquote-gfx.png') 0 4px no-repeat;
+  background: transparent url('/images/blockquote-gfx.png') 0 4px no-repeat;
 }
 
 img {
@@ -435,7 +441,7 @@ hr {
   border: none;
   outline: none;
   height: 18px;
-  background: transparent url('../images/hr.jpg') center center repeat-x;
+  background: transparent url('/images/hr.jpg') center center repeat-x;
   margin: 0 0 20px;
 }
 
@@ -523,6 +529,10 @@ dd p:first-child {
 #main_content > .header-level-5:first-child,
 #main_content > .header-level-6:first-child {
   margin-top: 0;
+}
+
+.header-level-1 a {
+  color: #7c334f;
 }
 
 .header-level-1 {

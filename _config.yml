@@ -1,0 +1,9 @@
+name: Ludum Dare 31
+baseurl: '/Ludum-Dare-31'
+description: Entire Game on One Screen
+
+permalink: /:year/:month/:day/:title/
+paginate: 10
+highlighter: true
+
+exclude: ['README.md']
