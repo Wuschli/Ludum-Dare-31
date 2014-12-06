@@ -10,6 +10,8 @@ var StarMap = function(gameWorld) {
     var planet = new Planet();
     this.planets.push(planet);
   }
+
+  this.mapScale = 100;
 };
 
 module.exports = StarMap;

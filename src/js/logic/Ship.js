@@ -29,7 +29,6 @@ Ship.prototype = {
   energy: 0,
   crew: [],
   captain: null,
-  position: {}, // not sure how to fill this yet
   target: {},
   status: 'landed',
   addCrew: function(newMember) {
