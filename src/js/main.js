@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   game.state.add('Preloader', require('./states/preloader'));
   game.state.add('Menu', require('./states/menu'));
   game.state.add('Game', require('./states/game'));
+  game.state.add('GameOver', require('./states/gameOver'));
 
   game.state.start('Boot');
 });

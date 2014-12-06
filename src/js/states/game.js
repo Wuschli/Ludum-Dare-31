@@ -8,14 +8,22 @@ module.exports = Game;
 Game.prototype = {
 
   create: function() {
+
+    console.log('create World');
     this.gameWorld = new GameWorld(this.game);
     this.add.group(new Screen(this.game, this.gameWorld));
     this.worldTicker = this.game.time.create(false);
-    var tickLoop = this.worldTicker.loop(400, this.gameWorld.tick, this.gameWorld, 3);
+    var tickLoop = this.worldTicker.loop(200, this.gameWorld.tick, this.gameWorld, 1);
     this.worldTicker.start();
   },
 
   update: function() {
 
+  },
+
+  shutdown: function(){
+    this.stage.removeStageReference();
+    this.worldTicker.removeAll();
+    this.gameWorld = null;
   }
 };
