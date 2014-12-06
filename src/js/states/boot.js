@@ -5,7 +5,7 @@ module.exports = Boot;
 Boot.prototype = {
 
   preload: function () {
-    
+
   },
 
   create: function () {
@@ -24,6 +24,6 @@ Boot.prototype = {
       this.game.stage.scale.setScreenSize(true);
     }
 
-    this.game.state.start('Preloader');
+    this.game.state.start('Splash');
   }
 };
