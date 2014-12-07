@@ -1,5 +1,6 @@
 var StatusDisplay = require('./StatusDisplay');
 var ActionButtons = require('./ActionButtons');
+var TradingButtons = require('./TradingButtons');
 var StarMap = require('./StarMap');
 
 var MenuBar = function(game, gameWorld) {
@@ -10,7 +11,10 @@ var MenuBar = function(game, gameWorld) {
   this.statusDisplay.x = Math.floor(-this.game.world.width / 2 + 8 + this.statusDisplay.width / 2);
 
   this.actionButtons = this.add(new ActionButtons(this.game, this.gameWorld));
-  this.actionButtons.x = Math.floor(-this.actionButtons.width / 2);
+  this.actionButtons.x = Math.floor(-this.actionButtons.width - 4);
+
+  this.tradingButtons = this.add(new TradingButtons(this.game, this.gameWorld));
+  this.tradingButtons.x = Math.floor(4);
 
   this.starMap = this.add(new StarMap(this.game, this.gameWorld));
   this.starMap.x = Math.floor(this.game.world.width / 2 - 248);
@@ -24,5 +28,6 @@ MenuBar.prototype.constructor = MenuBar;
 MenuBar.prototype.update = function(){
   this.statusDisplay.update();
   this.actionButtons.update();
+  this.tradingButtons.update();
   this.starMap.update();
 };

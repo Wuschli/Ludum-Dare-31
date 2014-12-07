@@ -27,18 +27,18 @@ CrewMember.prototype = {
   age: 0,
   class: 'crew',
   tick: function(deltaT) {
-    var self = this;
 
     this.hunger += deltaT * this.hungerCost;
     if (this.hunger >= 1) {
-      this.ship.cargo.forEach(function(cargo) {
+      for (var name in this.ship.cargo){
+      var cargo = this.ship.cargo[name];
         if (cargo.type === 'food') {
-          var amount = Math.min(self.hunger, cargo.count);
+          var amount = Math.min(this.hunger, cargo.count);
           cargo.count -= amount;
-          self.hunger -= amount;
+          this.hunger -= amount;
           // console.log(self.name + ' eats ' + amount + ' of ' + cargo.name);
         }
-      });
+      }
     }
     if (this.hunger >= 2) {
       // console.log(this.name + ' is almost starving');
@@ -50,14 +50,15 @@ CrewMember.prototype = {
 
     this.thirst += deltaT * this.thirstCost;
     if (this.thirst >= 1) {
-      this.ship.cargo.forEach(function(cargo) {
+      for (var name in this.ship.cargo){
+        var cargo = this.ship.cargo[name];
         if (cargo.type === 'drink') {
-          var amount = Math.min(self.thirst, cargo.count);
+          var amount = Math.min(this.thirst, cargo.count);
           cargo.count -= amount;
-          self.thirst -= amount;
+          this.thirst -= amount;
           // console.log(self.name + ' drinks ' + amount + ' of ' + cargo.name);
         }
-      });
+      }
     }
     if (this.thirst >= 2) {
       // console.log(this.name + ' is almost dying of thirst');

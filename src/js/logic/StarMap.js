@@ -7,7 +7,7 @@ var StarMap = function(gameWorld) {
 
   var planetCount = Math.floor(Math.random() * 8) + 6;
   for (var i = 0; i < planetCount; i++) {
-    var planet = new Planet();
+    var planet = new Planet(this.gameWorld);
     this.planets.push(planet);
   }
 

@@ -2,13 +2,8 @@
   "energyConsumption": 0.0073,
   "money": 10000,
   "speed": 150,
-  "cargo": [{
-    "type": "food",
-    "count": 500,
-    "name": "Space Meals"
-  }, {
-    "type": "drink",
-    "count": 750,
-    "name": "Space Drinks"
-  }]
+  "cargo": {
+    "Space Meals": 500,
+    "Space Drinks": 750
+  }
 }

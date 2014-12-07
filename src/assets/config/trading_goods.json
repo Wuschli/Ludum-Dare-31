@@ -1,0 +1,38 @@
+{
+  "Space Meals": {
+    "icon": "icon_food",
+    "type": "food",
+    "unit": 50,
+    "price": 3.4
+  },
+  "Space Drinks": {
+    "icon": "icon_drink",
+    "type": "drink",
+    "unit": 50,
+    "price": 2.8
+  },
+  "Painkiller": {
+    "icon": "icon_medicine",
+    "type": "medicine",
+    "unit": 10,
+    "price": 10.3
+  },
+  "Motherboards": {
+    "icon": "icon_circuit_board",
+    "type": "circuit_board",
+    "unit": 10,
+    "price": 5.7
+  },
+  "Iron Bars": {
+    "icon": "icon_metal",
+    "type": "metal",
+    "unit": 20,
+    "price": 4.1
+  },
+  "Solar Cells": {
+    "icon": "icon_solar_cell",
+    "type": "solar_cell",
+    "unit": 50,
+    "price": 7.9
+  }
+}

@@ -19,7 +19,7 @@ StatusDisplay.prototype.constructor = StatusDisplay;
 StatusDisplay.prototype.update = function() {
   var lines = [
     'Day ' + Math.floor(moment.duration(this.gameWorld.worldTime, 'd').asDays()),
-    this.gameWorld.ship.captain.money + ' Credits',
+    this.gameWorld.ship.captain.money.toFixed(2) + ' Credits',
     this.gameWorld.ship.captain.getAge() + ' Years',
     this.gameWorld.ship.getDrinks().toFixed(2) + ' Drinks',
     this.gameWorld.ship.getFood().toFixed(2) + ' Meals',

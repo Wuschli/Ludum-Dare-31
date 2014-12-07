@@ -6,7 +6,7 @@ var GameWorld = function(game) {
 
   this.map = new StarMap(this);
 
-  var ship_config = JSON.parse(game.cache.getText('ship_config'));
+  var ship_config = this.game.config.ship;//JSON.parse(game.cache.getText('ship_config'));
   this.ship = new Ship(ship_config, this);
 };
 

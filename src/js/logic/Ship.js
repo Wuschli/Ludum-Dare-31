@@ -3,11 +3,20 @@
 var CrewMember = require('./CrewMember');
 
 var Ship = function(config, gameWorld) {
+  this.gameWorld = gameWorld;
+
   this.energyConsumption = config.energyConsumption;
   this.energy = 1;
-  this.cargo = config.cargo;
+  this.cargo = {};
+  for (var name in config.cargo) {
+    var good = this.gameWorld.game.config.tradingGoods[name];
+    var cargo = {
+      type: good.type,
+      count: config.cargo[name]
+    };
+    this.cargo[name] = cargo;
+  }
   this.speed = config.speed;
-  this.gameWorld = gameWorld;
   this.target = this.gameWorld.map.planets[0];
   this.position = this.target.positionAt(0);
 
@@ -43,20 +52,22 @@ Ship.prototype = {
   },
   getFood: function() {
     var value = 0;
-    this.cargo.forEach(function(cargo) {
+    for (var name in this.cargo) {
+      var cargo = this.cargo[name];
       if (cargo.type === 'food') {
         value += cargo.count;
       }
-    });
+    }
     return value;
   },
   getDrinks: function() {
     var value = 0;
-    this.cargo.forEach(function(cargo) {
+    for (var name in this.cargo) {
+      var cargo = this.cargo[name];
       if (cargo.type === 'drink') {
         value += cargo.count;
       }
-    });
+    }
     return value;
   },
   tick: function(deltaT) {
@@ -71,7 +82,7 @@ Ship.prototype = {
       this.status = 'space';
       var targetPosition = this.target.positionAt(this.gameWorld.worldTime);
       var duration = Phaser.Point.subtract(targetPosition, this.position).getMagnitude() / this.speed;
-      if (duration < 10){
+      if (duration < 10) {
         duration = deltaT;
       }
       var calculatedPosition = this.target.positionAt(this.gameWorld.worldTime + duration);
@@ -80,10 +91,10 @@ Ship.prototype = {
       this.position = Phaser.Point.add(this.position, direction);
     }
 
-    if (this.status === 'space'){
+    if (this.status === 'space') {
       this.energy -= Math.min(this.energyConsumption * deltaT, this.energy);
     }
-    if (this.energy === 0){
+    if (this.energy === 0) {
       this.captain.die();
     }
   }
