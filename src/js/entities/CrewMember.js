@@ -19,6 +19,13 @@ var CrewMember = function(game, crewMember) {
     this.ship.crew.splice(index, 1);
   }, this.crewMember, 1, 0, 2, 1, this);
 
+  this.portraitButton.onInputOver.add(function(){
+    this.game.tooltip.show('Fire');
+  }, this);
+  this.portraitButton.onInputOut.add(function(){
+    this.game.tooltip.hide();
+  }, this);
+
   this.portraitButton.anchor.x = 1;
 
   this.nameLabel = this.game.add.text(-this.portrait.width - 8, 8, this.getInfoText(), {
