@@ -3,6 +3,7 @@ var StarMap = require('./StarMap');
 
 var GameWorld = function(game) {
   this.game = game;
+  this.game.gameWorld = this;
 
   this.map = new StarMap(this);
 

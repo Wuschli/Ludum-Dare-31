@@ -5,7 +5,7 @@ var TradingButtons = function(game, gameWorld) {
   this.buttons = [];
   var yOffset = 0;
   var xOffset = 0;
-  var columnLength = 5;
+  var columnLength = 4;
 
   for (var goodName in this.game.config.tradingGoods) {
     var button = {};
@@ -17,8 +17,12 @@ var TradingButtons = function(game, gameWorld) {
 
     button.buyAction = function() {
       // console.log('buy ' + this.good.unit + ' of ' + this.goodName);
+      var price = this.ship.target.trading[this.goodName].price;
+      if (this.ship.hasClass('trader')){
+        price *= 0.9;
+      }
       var amount = Math.min(this.good.unit, this.ship.target.trading[this.goodName].count);
-      if (this.ship.captain.money < this.ship.target.trading[this.goodName].price * amount) {
+      if (this.ship.captain.money < price * amount) {
         return;
       }
       this.ship.target.trading[this.goodName].count -= amount;
@@ -27,14 +31,18 @@ var TradingButtons = function(game, gameWorld) {
         type: this.good.type
       };
       this.ship.cargo[this.goodName].count += amount;
-      this.ship.captain.money -= this.ship.target.trading[this.goodName].price * amount;
+      this.ship.captain.money -= price * amount;
     };
     button.sellAction = function() {
       // console.log('sell ' + this.good.unit + ' of ' + this.goodName);
+      var price = this.ship.target.trading[this.goodName].price;
+      if (this.ship.hasClass('trader')){
+        price *= 1.1;
+      }
       var amount = Math.min(this.good.unit, this.ship.cargo[this.goodName].count);
       this.ship.target.trading[this.goodName].count += amount;
       this.ship.cargo[this.goodName].count -= amount;
-      this.ship.captain.money += this.ship.target.trading[this.goodName].price * amount;
+      this.ship.captain.money += price * amount;
     };
 
     //buy button
@@ -44,10 +52,14 @@ var TradingButtons = function(game, gameWorld) {
     button.buyButton.buttonMode = true;
     button.buyButton.onInputOver.add(function() {
       this.tooltip.show(function() {
+        var price = this.ship.target.trading[this.goodName].price;
+        if (this.ship.hasClass('trader')){
+          price *= 0.9;
+        }
         var lines = [
-          'buy',
-          'amount: ' + this.ship.target.trading[this.goodName].count.toFixed(2),
-          'price: ' + this.ship.target.trading[this.goodName].price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
+          'buy ' + this.goodName,
+          'available: ' + this.ship.target.trading[this.goodName].count.toFixed(2) + ' units',
+          'price: ' + price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
         ];
         return lines.join('\n');
       }, this);
@@ -63,10 +75,14 @@ var TradingButtons = function(game, gameWorld) {
     button.sellButton.buttonMode = true;
     button.sellButton.onInputOver.add(function() {
       this.tooltip.show(function() {
+        var price = this.ship.target.trading[this.goodName].price;
+        if (this.ship.hasClass('trader')){
+          price *= 1.1;
+        }
         var lines = [
-          'sell',
-          'amount: ' + this.ship.cargo[this.goodName].count.toFixed(2),
-          'price: ' + this.ship.target.trading[this.goodName].price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
+          'sell ' + this.goodName,
+          'available: ' + this.ship.cargo[this.goodName].count.toFixed(2) + ' units',
+          'price: ' + price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
         ];
         return lines.join('\n');
       }, this);

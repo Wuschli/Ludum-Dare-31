@@ -1,6 +1,7 @@
 // Class to describe the game logic for the ship
 
 var CrewMember = require('./CrewMember');
+var chance = require('chance').Chance(Math.random());
 
 var Ship = function(config, gameWorld) {
   this.gameWorld = gameWorld;
@@ -20,7 +21,9 @@ var Ship = function(config, gameWorld) {
   this.target = this.gameWorld.map.planets[0];
   this.position = this.target.positionAt(0);
 
-  var captain = new CrewMember('Captain', this);
+  this.crew = [];
+  var name = chance.name();
+  var captain = new CrewMember(name, this, this.gameWorld);
   captain.money = config.money;
   captain.salary = 0;
   captain.class = 'captain';
@@ -29,16 +32,14 @@ var Ship = function(config, gameWorld) {
 
   var crewCount = Math.floor(Math.random() * 3) + 3;
   for (var i = 0; i < crewCount; i++) {
-    this.crew.push(new CrewMember('Crew Member ' + (i + 1), this));
+    var name = chance.name();
+    this.crew.push(new CrewMember(name, this, this.gameWorld));
   }
 };
 
 module.exports = Ship;
 
 Ship.prototype = {
-  cargo: [], // trading goods, water, food, etc.
-  energy: 0,
-  crew: [],
   captain: null,
   status: 'landed',
   speed: 100,
@@ -70,6 +71,14 @@ Ship.prototype = {
     }
     return value;
   },
+  hasClass: function(className) {
+    for (var i = 0; i < this.crew.length; i++) {
+      if (this.crew[i].class === className) {
+        return true;
+      }
+    }
+    return false;
+  },
   tick: function(deltaT) {
     if (this.position.distance(this.target.positionAt(this.gameWorld.worldTime + deltaT)) < this.speed) {
       if (this.status === 'space') {
@@ -92,7 +101,11 @@ Ship.prototype = {
     }
 
     if (this.status === 'space') {
-      this.energy -= Math.min(this.energyConsumption * deltaT, this.energy);
+      var energyCost = this.energyConsumption;
+      if (this.hasClass('engineer')){
+        energyCost *= 0.9;
+      }
+      this.energy -= Math.min(energyCost * deltaT, this.energy);
     }
     if (this.energy === 0) {
       this.captain.die();

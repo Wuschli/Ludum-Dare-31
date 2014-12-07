@@ -5,7 +5,7 @@ var StatusDisplay = function(game, gameWorld) {
   this.gameWorld = gameWorld;
   this.label = this.game.add.text(0, 0, '', {
     font: '22px VT323',
-    fill: '#ffffff',
+    fill: '#EBCB96',
     align: 'left'
   }, this);
   this.label.lineSpacing = 8;

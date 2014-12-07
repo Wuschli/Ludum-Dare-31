@@ -13,14 +13,14 @@ Menu.prototype = {
 
     this.text = this.add.text(x, y, "Press to Start", {
       font: "65px VT323",
-      fill: "#ffffff",
+      fill: "#EBCB96",
       align: "center"
     });
     this.text.anchor.setTo(0.5, 0.5);
 
     this.infoText = this.add.text(x, y + 50, this.game.cache.getText('about'), {
       font: "22px VT323",
-      fill: "#ffffff",
+      fill: "#EBCB96",
       align: "center"
     });
     this.infoText.anchor.setTo(0.5, 0);
