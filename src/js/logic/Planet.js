@@ -13,7 +13,7 @@ var Planet = function(gameWorld) {
     var good = this.gameWorld.game.config.tradingGoods[goodName];
     var available = Math.round(Math.random());
     var count = available ? Math.random() * 100 * good.unit : 0;
-    var price = (Math.random() * 0.4 + 0.8) * good.price;
+    var price = (Math.random() + 0.5) * good.price;
     this.trading[goodName] = {
       count: count,
       price: price

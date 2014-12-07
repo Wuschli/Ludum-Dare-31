@@ -1,5 +1,5 @@
 var CrewList = require('./CrewList');
-var Ship = require('./Ship.js');
+var Ship = require('./Ship');
 var MenuBar = require('./MenuBar');
 var Tooltip = require('./Tooltip');
 
@@ -7,6 +7,10 @@ var Screen = function(game, gameWorld) {
   Phaser.Group.call(this, game);
 
   this.gameWorld = gameWorld;
+
+  this.game.tooltip = this.add(new Tooltip(this.game, 300), this);
+  this.game.tooltip.x = 100;
+  this.game.tooltip.y = 100;
 
   this.ship = this.add(new Ship(this.game, this.gameWorld));
   this.crewList = this.add(new CrewList(this.game));
@@ -22,9 +26,7 @@ var Screen = function(game, gameWorld) {
   this.menuBar.x = Math.floor(this.game.world.width / 2);
   this.menuBar.y = this.game.world.height - 248;
 
-  this.tooltip = this.add(new Tooltip(this.game, 'Hey, i am a tooltip. Really fancy and... stuff!', 50));
-  this.tooltip.x = 100;
-  this.tooltip.y = 100;
+  this.bringToTop(this.game.tooltip);
 };
 
 module.exports = Screen;
@@ -38,5 +40,7 @@ Screen.prototype.redrawCrewList = function() {
 
 Screen.prototype.update = function() {
   this.redrawCrewList();
+  this.ship.update();
   this.menuBar.update();
+  this.game.tooltip.update();
 };

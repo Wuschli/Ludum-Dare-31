@@ -13,11 +13,12 @@ var TradingButtons = function(game, gameWorld) {
     button.good = good;
     button.goodName = goodName;
     button.ship = this.gameWorld.ship;
+    button.tooltip = this.game.tooltip;
 
     button.buyAction = function() {
       // console.log('buy ' + this.good.unit + ' of ' + this.goodName);
       var amount = Math.min(this.good.unit, this.ship.target.trading[this.goodName].count);
-      if (this.ship.captain.money < this.ship.target.trading[this.goodName].price * amount){
+      if (this.ship.captain.money < this.ship.target.trading[this.goodName].price * amount) {
         return;
       }
       this.ship.target.trading[this.goodName].count -= amount;
@@ -41,12 +42,38 @@ var TradingButtons = function(game, gameWorld) {
     button.buyButtonIcon = this.game.add.image(xOffset, yOffset, good.icon, 0, this);
     button.buyButtonPlusIcon = this.game.add.image(xOffset, yOffset, 'icon_plus', 0, this);
     button.buyButton.buttonMode = true;
+    button.buyButton.onInputOver.add(function() {
+      this.tooltip.show(function() {
+        var lines = [
+          'buy',
+          'amount: ' + this.ship.target.trading[this.goodName].count.toFixed(2),
+          'price: ' + this.ship.target.trading[this.goodName].price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
+        ];
+        return lines.join('\n');
+      }, this);
+    }, button);
+    button.buyButton.onInputOut.add(function() {
+      this.tooltip.hide();
+    }, button);
 
     //sell button
     button.sellButton = this.game.add.button(xOffset + button.buyButton.width + 8, yOffset, 'button_small', button.sellAction, button, 1, 0, 2, 1, this);
     button.sellButtonIcon = this.game.add.image(xOffset + button.buyButton.width + 8, yOffset, good.icon, 0, this);
     button.sellButtonMinusIcon = this.game.add.image(xOffset + button.buyButton.width + 8, yOffset, 'icon_minus', 0, this);
     button.sellButton.buttonMode = true;
+    button.sellButton.onInputOver.add(function() {
+      this.tooltip.show(function() {
+        var lines = [
+          'sell',
+          'amount: ' + this.ship.cargo[this.goodName].count.toFixed(2),
+          'price: ' + this.ship.target.trading[this.goodName].price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
+        ];
+        return lines.join('\n');
+      }, this);
+    }, button);
+    button.sellButton.onInputOut.add(function() {
+      this.tooltip.hide();
+    }, button);
 
     this.buttons.push(button);
     yOffset += button.buyButton.height + 8;

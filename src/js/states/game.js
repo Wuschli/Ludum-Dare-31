@@ -10,6 +10,7 @@ Game.prototype = {
   create: function() {
 
     console.log('create World');
+
     this.gameWorld = new GameWorld(this.game);
     this.add.group(new Screen(this.game, this.gameWorld));
     this.worldTicker = this.game.time.create(false);

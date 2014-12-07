@@ -71,7 +71,7 @@ Ship.prototype = {
     return value;
   },
   tick: function(deltaT) {
-    if (this.position.distance(this.target.position) < this.speed) {
+    if (this.position.distance(this.target.positionAt(this.gameWorld.worldTime + deltaT)) < this.speed) {
       if (this.status === 'space') {
         this.status = 'orbit';
       }

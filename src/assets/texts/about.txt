@@ -1,5 +1,6 @@
-This game was created by Lukas Höppner for the Ludum Dare 31 Compo.
+This game was created in 48 hours from scratch by Lukas Höppner for the Ludum Dare 31 Compo.
 
 It's only tested in Chrome for OS X and optimized for a minimal resolution of 1280x800.
 
 The Source Code can be found at https://github.com/Wuschli/Ludum-Dare-31
+Infos about the Ludum Dare Compo can be found at http://ludumdare.com/compo/
