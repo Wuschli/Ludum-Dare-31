@@ -11,6 +11,10 @@ var StarMap = function(game, gameWorld) {
   this.maskGraphics.isMask = true;
   this.graphics.mask = this.maskGraphics;
 
+  this.targetPointer = this.game.add.image(0, 0, 'target_pointer', 0, this);
+  this.targetPointer.anchor.x = 0.5;
+  this.targetPointer.anchor.y = 0.5;
+
   this.hitArea = new Phaser.Rectangle(0, 0, 240, 240);
   this.offset = {
     x: 0,
@@ -29,14 +33,14 @@ var StarMap = function(game, gameWorld) {
     };
     var nearest = null;
     var shortestDistance = -1;
-    this.gameWorld.map.planets.forEach(function(planet){
+    this.gameWorld.map.planets.forEach(function(planet) {
       var distance = Math.sqrt(Math.pow(pointOnMap.x - planet.position.x, 2) + Math.pow(pointOnMap.y - planet.position.y, 2));
-      if (shortestDistance < 0 || distance < shortestDistance){
+      if (shortestDistance < 0 || distance < shortestDistance) {
         nearest = planet;
         shortestDistance = distance;
       }
     }, this);
-    if (shortestDistance / scale <= 10){
+    if (shortestDistance / scale <= 10) {
       this.gameWorld.ship.target = nearest;
     }
   }, this);
@@ -55,6 +59,7 @@ StarMap.prototype.update = function() {
     x: -this.gameWorld.ship.position.x / scale + 120,
     y: -this.gameWorld.ship.position.y / scale + 120
   };
+  var alpha = 0;
 
   //draw ship
   this.graphics.beginFill(0x0000FF, 1);
@@ -70,7 +75,15 @@ StarMap.prototype.update = function() {
     self.graphics.beginFill(0xFF0000, 1);
     self.graphics.drawRect(planet.position.x / scale - 2 + self.offset.x, planet.position.y / scale - 2 + self.offset.y, 4, 4);
     self.graphics.endFill();
-  });
+
+    if ((planet === ship.target) && (ship.status === 'space')){
+      this.targetPointer.x = planet.position.x / scale + self.offset.x;
+      this.targetPointer.y = planet.position.y / scale + self.offset.y;
+      alpha = 1;
+    }
+  }, this);
+
+  this.targetPointer.alpha = alpha;
 
   //draw sun
   this.graphics.beginFill(0xFFFFCF, .3);

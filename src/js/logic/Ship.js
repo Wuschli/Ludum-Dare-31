@@ -3,7 +3,8 @@
 var CrewMember = require('./CrewMember');
 
 var Ship = function(config, gameWorld) {
-  this.energy = config.energy;
+  this.energyConsumption = config.energyConsumption;
+  this.energy = 1;
   this.cargo = config.cargo;
   this.speed = config.speed;
   this.gameWorld = gameWorld;
@@ -68,10 +69,22 @@ Ship.prototype = {
       this.status = 'orbit';
     } else {
       this.status = 'space';
-      var targetPosition = this.target.positionAt(this.gameWorld.worldTime + deltaT);
-      var direction = Phaser.Point.subtract(targetPosition, this.position);
+      var targetPosition = this.target.positionAt(this.gameWorld.worldTime);
+      var duration = Phaser.Point.subtract(targetPosition, this.position).getMagnitude() / this.speed;
+      if (duration < 10){
+        duration = deltaT;
+      }
+      var calculatedPosition = this.target.positionAt(this.gameWorld.worldTime + duration);
+      var direction = Phaser.Point.subtract(calculatedPosition, this.position);
       direction.setMagnitude(Math.min(this.speed * deltaT, direction.getMagnitude()));
       this.position = Phaser.Point.add(this.position, direction);
+    }
+
+    if (this.status === 'space'){
+      this.energy -= Math.min(this.energyConsumption * deltaT, this.energy);
+    }
+    if (this.energy === 0){
+      this.captain.die();
     }
   }
 };

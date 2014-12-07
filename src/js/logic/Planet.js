@@ -4,7 +4,8 @@ var Planet = function() {
   this.orbit = Math.random() * 20000 + 500;
   this.yearLength = (Math.floor(Math.random() * 300) + 215);
   this.position = new Phaser.Point(0, 0);
-  this.offset = Math.floor(Math.random() * this.yearLength);
+  this.offset = Math.random() * this.yearLength;
+  this.refuelCost = Math.random() * 100 + 50;
 };
 
 module.exports = Planet;

@@ -4,7 +4,14 @@ var ActionButtons = function(game, gameWorld) {
   var self = this;
   this.buttons = [{
     labelText: function() {
-      return ((self.gameWorld.ship.status === 'landed') ? 'start into orbit' : 'land on planet');
+      switch (self.gameWorld.ship.status) {
+        case 'landed':
+          return 'start into orbit';
+        case 'orbit':
+          return 'land on planet';
+        case 'space':
+          return 'waiting for arrival';
+      }
     },
     action: function() {
       switch (this.gameWorld.ship.status) {
@@ -21,7 +28,7 @@ var ActionButtons = function(game, gameWorld) {
       return 'increase map scale';
     },
     action: function() {
-      self.gameWorld.map.mapScale *= 1/2;
+      self.gameWorld.map.mapScale *= 1 / 2;
     },
   }, {
     labelText: function() {
@@ -30,6 +37,30 @@ var ActionButtons = function(game, gameWorld) {
     action: function() {
       self.gameWorld.map.mapScale *= 2;
     },
+  }, {
+    labelText: function() {
+      if (self.gameWorld.ship.energy >= 1){
+        return 'full tank';
+      }
+      if (self.gameWorld.ship.status === 'landed') {
+        var costs = (self.gameWorld.ship.target.refuelCost * (1 - self.gameWorld.ship.energy)).toFixed(2);
+        return 'refuel (' + costs + ' Credits)';
+      }
+      return 'land to refuel';
+    },
+    action: function() {
+      if (self.gameWorld.ship.energy >= 1){
+        return;
+      }
+      if (self.gameWorld.ship.status === 'landed') {
+        var costs = (self.gameWorld.ship.target.refuelCost * (1 - self.gameWorld.ship.energy)).toFixed(2);
+        if (self.gameWorld.ship.captain.money >= costs) {
+          self.gameWorld.ship.captain.money -= costs;
+          self.gameWorld.ship.energy = 1;
+        }
+      }
+    },
+
   }];
 
   var yOffset = 0;

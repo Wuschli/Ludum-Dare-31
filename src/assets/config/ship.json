@@ -1,7 +1,7 @@
 {
-  "energy": 100,
+  "energyConsumption": 0.0073,
   "money": 10000,
-  "speed": 100,
+  "speed": 150,
   "cargo": [{
     "type": "food",
     "count": 500,
