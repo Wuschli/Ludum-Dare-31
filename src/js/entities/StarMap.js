@@ -61,6 +61,11 @@ StarMap.prototype.update = function() {
   };
   var alpha = 0;
 
+  //draw background
+  this.graphics.beginFill(0x010101, 1);
+  this.graphics.drawRect(2, 2, 236, 236);
+  this.graphics.endFill();
+
   //draw ship
   this.graphics.beginFill(0x0000FF, 1);
   var ship = this.gameWorld.ship;

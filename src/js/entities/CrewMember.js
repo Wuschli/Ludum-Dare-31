@@ -1,31 +1,29 @@
 var CrewMember = function(game, crewMember) {
   Phaser.Group.call(this, game);
 
+  this.crewMember = crewMember;
   var portrait = crewMember.portrait || 'unknown_portrait';
   this.portrait = this.create(0, 0, portrait);
   this.portrait.anchor.x = 1;
   this.infoBackground = this.create(-this.portrait.width, 4, 'crew_member_info_background');
   this.infoBackground.anchor.x = 1;
 
-  var lines = [
-    this.game.config.crewClasses[crewMember.class].display_name + ' ' + crewMember.name,
-    crewMember.getAge() + ' years old',
-  ];
+  this.portraitButton = this.game.add.button(0, 0, 'button_portrait', function() {
+    if (this.class === 'captain'){
+      return;
+    }
+    var index = this.ship.crew.indexOf(this);
+    if (index < 0){
+      return;
+    }
+    this.ship.crew.splice(index, 1);
+  }, this.crewMember, 1, 0, 2, 1, this);
 
-  var status = [];
-  if (crewMember.hunger >= 0.8){
-    status.push((crewMember.hunger >= 1.8 ? 'very ': '') + 'hungry' )
-  }
-  if (crewMember.thirst >= 0.8){
-    status.push((crewMember.thirst >= 1.8 ? 'very ': '') + 'thirsty' )
-  }
+  this.portraitButton.anchor.x = 1;
 
-  lines.push(status.join(', '));
-  var infoText = lines.join('\n');
-
-  this.nameLabel = this.game.add.text(-this.portrait.width - 8, 8, infoText, {
+  this.nameLabel = this.game.add.text(-this.portrait.width - 8, 8, this.getInfoText(), {
     font: '22px VT323',
-    fill: '#ffffff',
+    fill: '#EBCB96',
     align: 'right'
   }, this);
   this.nameLabel.anchor.x = 1;
@@ -35,3 +33,25 @@ module.exports = CrewMember;
 
 CrewMember.prototype = Object.create(Phaser.Group.prototype);
 CrewMember.prototype.constructor = CrewMember;
+
+CrewMember.prototype.getInfoText = function() {
+  var lines = [
+    this.game.config.crewClasses[this.crewMember.class].display_name + ' ' + this.crewMember.name,
+    this.crewMember.getAge() + ' years old',
+  ];
+
+  var status = [];
+  if (this.crewMember.hunger >= 0.8) {
+    status.push((this.crewMember.hunger >= 1.8 ? 'very ' : '') + 'hungry')
+  }
+  if (this.crewMember.thirst >= 0.8) {
+    status.push((this.crewMember.thirst >= 1.8 ? 'very ' : '') + 'thirsty')
+  }
+
+  lines.push(status.join(', '));
+  return lines.join('\n');
+};
+
+CrewMember.prototype.update = function() {
+  this.nameLabel.setText(this.getInfoText());
+};

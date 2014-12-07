@@ -1,15 +1,17 @@
 // Class to describe the game logic for a crew member
 
-var CrewMember = function(name, ship) {
+var CrewMember = function(name, ship, game) {
   this.salary = Math.floor(Math.random() * 50) + 100;
   this.money = Math.floor(Math.random() * 350) + 50;
   this.hungerCost = Math.random() * 0.05 + 0.15;
   this.thirstCost = Math.random() * 0.05 + 0.2;
   this.age = Math.floor(Math.random() * 15) + 25;
+  this.ageOffset = Math.floor(Math.random() * 374);
   this.salaryPeriod = Math.floor(Math.random() * 7) + 26;
   this.name = name;
   this.ship = ship;
-  var classes = this.ship.gameWorld.game.config.crewClasses.crewClasses;
+  this.game = game;
+  var classes = this.game.config.crewClasses.crewClasses;
   this.class = classes[Math.floor(Math.random() * classes.length)];
 };
 
@@ -94,7 +96,7 @@ CrewMember.prototype = {
     }
   },
   getAge: function() {
-    return this.age + Math.floor(this.ship.gameWorld.worldTime / 365);
+    return this.age + Math.floor((this.ship.gameWorld.worldTime + this.ageOffset) / 365);
   },
   die: function() {
     var index = this.ship.crew.indexOf(this);

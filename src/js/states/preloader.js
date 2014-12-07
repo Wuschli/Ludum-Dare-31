@@ -7,6 +7,10 @@ module.exports = Preloader;
 Preloader.prototype = {
 
   preload: function() {
+    this.loadingSprite = this.add.sprite(Math.floor(this.game.world.width / 2), Math.floor(this.game.world.height / 2), 'loading');
+    this.loadingSprite.anchor.setTo(0.5, 0.5);
+    this.load.setPreloadSprite(this.loadingSprite);
+
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
@@ -33,11 +37,9 @@ Preloader.prototype = {
 
     this.load.spritesheet('button', 'assets/images/button.png', 200, 40);
     this.load.spritesheet('button_small', 'assets/images/button_small.png', 40, 40);
+    this.load.spritesheet('button_portrait', 'assets/images/button_portrait.png', 64, 64);
 
     this.load.audio('music', [
-      // 'assets/music/bu-a-banana-and-boats.ogg',
-      // 'assets/music/bu-a-drinking-toaster.ogg',
-      // 'assets/music/bu-a-towns-parks.ogg',
       'assets/music/bu-hidden-demoscenes.ogg'
     ]);
 

@@ -1,5 +1,8 @@
 // Class to describe the game logic for a planet
 
+var CrewMember = require('./CrewMember');
+var chance = require('chance').Chance();
+
 var Planet = function(gameWorld) {
   this.gameWorld = gameWorld;
   this.orbit = Math.random() * 20000 + 500;
@@ -18,6 +21,11 @@ var Planet = function(gameWorld) {
       count: count,
       price: price
     }
+  }
+  this.availableCrew = [];
+  var crewCount = Math.floor(Math.random() * 5);
+  for (var i = 0; i < crewCount; i++) {
+    this.availableCrew.push(new CrewMember(chance.name(), null, this.gameWorld.game));
   }
 };
 

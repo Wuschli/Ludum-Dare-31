@@ -70,7 +70,7 @@ var ActionButtons = function(game, gameWorld) {
     button.button = this.game.add.button(xOffset, yOffset, 'button', button.action, this, 1, 0, 2, 1, this);
     button.label = this.game.add.text(0, 0, button.labelText.call(this), {
       font: '22px VT323',
-      fill: '#ffffff',
+      fill: '#EBCB96',
       align: 'center'
     }, this);
     button.label.anchor.x = 0.5;

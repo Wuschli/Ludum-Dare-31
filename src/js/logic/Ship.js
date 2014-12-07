@@ -23,7 +23,7 @@ var Ship = function(config, gameWorld) {
 
   this.crew = [];
   var name = chance.name();
-  var captain = new CrewMember(name, this);
+  var captain = new CrewMember(name, this, this.gameWorld.game);
   captain.money = config.money;
   captain.salary = 0;
   captain.class = 'captain';
@@ -33,7 +33,7 @@ var Ship = function(config, gameWorld) {
   var crewCount = Math.floor(Math.random() * 3) + 3;
   for (var i = 0; i < crewCount; i++) {
     var name = chance.name();
-    this.crew.push(new CrewMember(name, this));
+    this.crew.push(new CrewMember(name, this, this.gameWorld.game));
   }
 };
 

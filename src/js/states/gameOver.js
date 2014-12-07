@@ -10,7 +10,7 @@ GameOver.prototype = {
     var x = this.world.centerX;
     var y = this.world.centerY;
 
-    var style = { font: "65px VT323", fill: "#ffffff", align: "center" };
+    var style = { font: "65px VT323", fill: "#EBCB96", align: "center" };
 
     this.text = this.add.text(x, y, "Game Over\nClick to continue", style);
     this.text.anchor.setTo(0.5, 0.5);
