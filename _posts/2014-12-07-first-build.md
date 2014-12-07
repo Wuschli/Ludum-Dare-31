@@ -24,3 +24,8 @@ Now that I have a first version to hand in, I will start adding some extra featu
 * Classes for the Crew (An _Engineer_ reduces the energy consumption, a _Trader_ gets better prices for goods, a _Cook_ reduces the food consumption, etc)
 * Jobs to earn money on the different planets (Not sure how this should look like)
 * Hire and Fire your Crew
+
+## Edit
+**O M G**
+I completely forgot the sound :/
+I will try to add some background music created by the Autotracker.py script and maybe some sound effects with the BFXR
