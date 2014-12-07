@@ -5,9 +5,10 @@ var CrewMember = require('./CrewMember');
 var Ship = function(config, gameWorld) {
   this.energy = config.energy;
   this.cargo = config.cargo;
+  this.speed = config.speed;
   this.gameWorld = gameWorld;
   this.target = this.gameWorld.map.planets[0];
-  this.position = this.target.position;
+  this.position = this.target.positionAt(0);
 
   var captain = new CrewMember('Captain', this);
   captain.money = config.money;
@@ -29,8 +30,8 @@ Ship.prototype = {
   energy: 0,
   crew: [],
   captain: null,
-  target: {},
   status: 'landed',
+  speed: 100,
   addCrew: function(newMember) {
     newMember.ship = this;
     this.crew.push(newMember);
@@ -56,5 +57,21 @@ Ship.prototype = {
       }
     });
     return value;
+  },
+  tick: function(deltaT) {
+    if (this.position.distance(this.target.position) < this.speed) {
+      if (this.status === 'space') {
+        this.status = 'orbit';
+      }
+      this.position = this.target.positionAt(this.gameWorld.worldTime + deltaT);
+    } else if (this.status === 'landed') {
+      this.status = 'orbit';
+    } else {
+      this.status = 'space';
+      var targetPosition = this.target.positionAt(this.gameWorld.worldTime + deltaT);
+      var direction = Phaser.Point.subtract(targetPosition, this.position);
+      direction.setMagnitude(Math.min(this.speed * deltaT, direction.getMagnitude()));
+      this.position = Phaser.Point.add(this.position, direction);
+    }
   }
 };

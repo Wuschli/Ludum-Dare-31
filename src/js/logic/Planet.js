@@ -1,13 +1,20 @@
 // Class to describe the game logic for a planet
 
-var Planet = function(){
+var Planet = function() {
   this.orbit = Math.random() * 20000 + 500;
-  this.yearLength = Math.floor(Math.random() * 300) + 215;
-  this.position = {x: 0, y: 0};
+  this.yearLength = (Math.floor(Math.random() * 300) + 215);
+  this.position = new Phaser.Point(0, 0);
   this.offset = Math.floor(Math.random() * this.yearLength);
 };
 
 module.exports = Planet;
 
 Planet.prototype = {
+  positionAt: function(time) {
+    var position = new Phaser.Point(
+      Math.sin(time / this.yearLength + this.offset) * this.orbit,
+      Math.cos(time / this.yearLength + this.offset) * this.orbit
+    );
+    return position;
+  },
 };

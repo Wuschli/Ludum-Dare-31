@@ -10,6 +10,36 @@ var StarMap = function(game, gameWorld) {
   this.maskGraphics.endFill();
   this.maskGraphics.isMask = true;
   this.graphics.mask = this.maskGraphics;
+
+  this.hitArea = new Phaser.Rectangle(0, 0, 240, 240);
+  this.offset = {
+    x: 0,
+    y: 0
+  };
+
+  this.game.input.onTap.add(function() {
+    var position = this.toLocal(this.game.input.activePointer.position);
+    if (!Phaser.Rectangle.containsPoint(this.hitArea, position)) {
+      return;
+    }
+    var scale = this.gameWorld.map.mapScale;
+    var pointOnMap = {
+      x: (position.x - this.offset.x) * scale,
+      y: (position.y - this.offset.y) * scale,
+    };
+    var nearest = null;
+    var shortestDistance = -1;
+    this.gameWorld.map.planets.forEach(function(planet){
+      var distance = Math.sqrt(Math.pow(pointOnMap.x - planet.position.x, 2) + Math.pow(pointOnMap.y - planet.position.y, 2));
+      if (shortestDistance < 0 || distance < shortestDistance){
+        nearest = planet;
+        shortestDistance = distance;
+      }
+    }, this);
+    if (shortestDistance / scale <= 10){
+      this.gameWorld.ship.target = nearest;
+    }
+  }, this);
 };
 
 module.exports = StarMap;
@@ -21,7 +51,7 @@ StarMap.prototype.update = function() {
   this.graphics.clear();
   var self = this;
   var scale = this.gameWorld.map.mapScale;
-  var offset = {
+  this.offset = {
     x: -this.gameWorld.ship.position.x / scale + 120,
     y: -this.gameWorld.ship.position.y / scale + 120
   };
@@ -34,20 +64,20 @@ StarMap.prototype.update = function() {
 
   this.gameWorld.map.planets.forEach(function(planet) {
     self.graphics.lineStyle(1, 0xFFFFFF, 0.25);
-    self.graphics.drawCircle(offset.x, offset.y, planet.orbit / scale * 2);
+    self.graphics.drawCircle(self.offset.x, self.offset.y, planet.orbit / scale * 2);
     self.graphics.lineStyle(0, 0, 0);
 
     self.graphics.beginFill(0xFF0000, 1);
-    self.graphics.drawRect(planet.position.x / scale - 2 + offset.x, planet.position.y / scale - 2 + offset.y, 4, 4);
+    self.graphics.drawRect(planet.position.x / scale - 2 + self.offset.x, planet.position.y / scale - 2 + self.offset.y, 4, 4);
     self.graphics.endFill();
   });
 
   //draw sun
   this.graphics.beginFill(0xFFFFCF, .3);
-  this.graphics.drawRect(offset.x - 4, offset.y - 4, 8, 8);
+  this.graphics.drawRect(this.offset.x - 4, this.offset.y - 4, 8, 8);
   this.graphics.endFill();
   this.graphics.beginFill(0xFFFFFF, 1);
-  this.graphics.drawRect(offset.x - 2, offset.y - 2, 4, 4);
+  this.graphics.drawRect(this.offset.x - 2, this.offset.y - 2, 4, 4);
   this.graphics.endFill();
 
 

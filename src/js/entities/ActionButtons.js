@@ -44,6 +44,7 @@ var ActionButtons = function(game, gameWorld) {
     button.label.anchor.y = 0.5;
     button.label.x = Math.floor(button.button.x + button.button.width / 2);
     button.label.y = Math.floor(button.button.y + button.button.height / 2);
+    button.button.buttonMode = true;
     yOffset += button.button.height + 8;
   });
 };

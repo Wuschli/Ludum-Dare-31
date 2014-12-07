@@ -1,6 +1,7 @@
 {
   "energy": 100,
   "money": 10000,
+  "speed": 100,
   "cargo": [{
     "type": "food",
     "count": 500,

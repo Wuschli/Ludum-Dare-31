@@ -18,13 +18,16 @@ GameWorld.prototype = {
   map: null,
   timeScale: 1,
   tick: function(deltaT) {
-    if (this.ship.status === 'landed'){
-      deltaT = 0.01 * deltaT;
-    }
-    if (this.ship.status === 'orbit'){
-      deltaT = 0.1 * deltaT;
+    switch (this.ship.status) {
+      case 'landed':
+        deltaT = 0.01 * deltaT;
+        break;
+      case 'orbit':
+        deltaT = 0.1 * deltaT;
+        break;
     }
     this.worldTime += deltaT;
+    this.ship.tick(deltaT);
     var hasCaptain = false;
     this.ship.crew.forEach(function(crewMember) {
       crewMember.tick(deltaT);

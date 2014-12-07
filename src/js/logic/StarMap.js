@@ -19,10 +19,8 @@ module.exports = StarMap;
 StarMap.prototype = {
   planets: [],
   update: function() {
-    var self = this;
     this.planets.forEach(function(planet) {
-      planet.position.x = Math.sin(self.gameWorld.worldTime / planet.yearLength + planet.offset) * planet.orbit;
-      planet.position.y = Math.cos(self.gameWorld.worldTime / planet.yearLength + planet.offset) * planet.orbit;
-    });
+      planet.position = planet.positionAt(this.gameWorld.worldTime);
+    }, this);
   }
 };
