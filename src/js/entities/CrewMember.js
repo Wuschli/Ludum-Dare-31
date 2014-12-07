@@ -9,27 +9,27 @@ var CrewMember = function(game, crewMember) {
   this.infoBackground.anchor.x = 1;
 
   this.portraitButton = this.game.add.button(0, 0, 'button_portrait', function() {
-    if (this.class === 'captain'){
+    if (this.class === 'captain') {
       return;
     }
     var index = this.ship.crew.indexOf(this);
-    if (index < 0){
+    if (index < 0) {
       return;
     }
     this.ship.crew.splice(index, 1);
   }, this.crewMember, 1, 0, 2, 1, this);
 
-  this.portraitButton.onInputOver.add(function(){
+  this.portraitButton.onInputOver.add(function() {
     this.game.tooltip.show('Fire');
   }, this);
-  this.portraitButton.onInputOut.add(function(){
+  this.portraitButton.onInputOut.add(function() {
     this.game.tooltip.hide();
   }, this);
 
   this.portraitButton.anchor.x = 1;
 
   this.nameLabel = this.game.add.text(-this.portrait.width - 8, 8, this.getInfoText(), {
-    font: '22px VT323',
+    font: '20px VT323',
     fill: '#EBCB96',
     align: 'right'
   }, this);
@@ -42,10 +42,6 @@ CrewMember.prototype = Object.create(Phaser.Group.prototype);
 CrewMember.prototype.constructor = CrewMember;
 
 CrewMember.prototype.getInfoText = function() {
-  var lines = [
-    this.game.config.crewClasses[this.crewMember.class].display_name + ' ' + this.crewMember.name,
-    this.crewMember.getAge() + ' years old',
-  ];
 
   var status = [];
   if (this.crewMember.hunger >= 0.8) {
@@ -55,7 +51,14 @@ CrewMember.prototype.getInfoText = function() {
     status.push((this.crewMember.thirst >= 1.8 ? 'very ' : '') + 'thirsty')
   }
 
-  lines.push(status.join(', '));
+  var lines = [
+    this.game.config.crewClasses[this.crewMember.class].display_name + ' ' + this.crewMember.name + ', ' + this.crewMember.getAge(),
+    status.join(', '),
+  ];
+  if (this.crewMember.class !== 'captain') {
+    lines.push(this.crewMember.salary + 'Cr per ' + this.crewMember.salaryPeriod + ' days');
+  }
+
   return lines.join('\n');
 };
 

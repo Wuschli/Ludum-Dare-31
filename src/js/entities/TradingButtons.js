@@ -57,8 +57,8 @@ var TradingButtons = function(game, gameWorld) {
           price *= 0.9;
         }
         var lines = [
-          'buy',
-          'amount: ' + this.ship.target.trading[this.goodName].count.toFixed(2),
+          'buy ' + this.goodName,
+          'available: ' + this.ship.target.trading[this.goodName].count.toFixed(2) + ' units',
           'price: ' + price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
         ];
         return lines.join('\n');
@@ -80,8 +80,8 @@ var TradingButtons = function(game, gameWorld) {
           price *= 1.1;
         }
         var lines = [
-          'sell',
-          'amount: ' + this.ship.cargo[this.goodName].count.toFixed(2),
+          'sell ' + this.goodName,
+          'available: ' + this.ship.cargo[this.goodName].count.toFixed(2) + ' units',
           'price: ' + price.toFixed(2) + 'Cr per ' + this.good.unit + ' units'
         ];
         return lines.join('\n');

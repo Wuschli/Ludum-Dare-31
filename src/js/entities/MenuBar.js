@@ -1,6 +1,7 @@
 var StatusDisplay = require('./StatusDisplay');
 var ActionButtons = require('./ActionButtons');
 var TradingButtons = require('./TradingButtons');
+var HireCrewButtons = require('./HireCrewButtons');
 var StarMap = require('./StarMap');
 
 var MenuBar = function(game, gameWorld) {
@@ -18,6 +19,9 @@ var MenuBar = function(game, gameWorld) {
 
   this.starMap = this.add(new StarMap(this.game, this.gameWorld));
   this.starMap.x = Math.floor(this.game.world.width / 2 - 248);
+
+  this.hireCrewButtons = this.add(new HireCrewButtons(this.game));
+  this.hireCrewButtons.x = Math.floor(- 2 * (64 + 8) - this.actionButtons.width - 4);
 };
 
 module.exports = MenuBar;
@@ -25,9 +29,10 @@ module.exports = MenuBar;
 MenuBar.prototype = Object.create(Phaser.Group.prototype);
 MenuBar.prototype.constructor = MenuBar;
 
-MenuBar.prototype.update = function(){
+MenuBar.prototype.update = function() {
   this.statusDisplay.update();
   this.actionButtons.update();
   this.tradingButtons.update();
   this.starMap.update();
+  this.hireCrewButtons.redraw(this.gameWorld.ship.target.availableCrew);
 };
