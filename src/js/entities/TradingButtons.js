@@ -5,7 +5,7 @@ var TradingButtons = function(game, gameWorld) {
   this.buttons = [];
   var yOffset = 0;
   var xOffset = 0;
-  var columnLength = 5;
+  var columnLength = 4;
 
   for (var goodName in this.game.config.tradingGoods) {
     var button = {};

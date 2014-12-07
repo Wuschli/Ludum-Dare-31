@@ -63,7 +63,7 @@ var ActionButtons = function(game, gameWorld) {
 
   var yOffset = 0;
   var xOffset = 0;
-  var columnLength = 5;
+  var columnLength = 4;
   var i = 0;
 
   this.buttons.forEach(function(button) {

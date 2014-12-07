@@ -16,6 +16,9 @@ Game.prototype = {
     this.worldTicker = this.game.time.create(false);
     var tickLoop = this.worldTicker.loop(200, this.gameWorld.tick, this.gameWorld, this.gameWorld.timeScale);
     this.worldTicker.start();
+
+    this.music = this.game.add.audio('music', 1, true);
+    this.music.play();
   },
 
   update: function() {

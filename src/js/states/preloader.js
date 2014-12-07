@@ -1,4 +1,4 @@
-var Preloader = function (game) {
+var Preloader = function(game) {
   this.ready = true;
 };
 
@@ -6,8 +6,9 @@ module.exports = Preloader;
 
 Preloader.prototype = {
 
-  preload: function () {
+  preload: function() {
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+    this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
 
     this.load.text('ship_config', 'assets/config/ship.json');
     this.load.text('trading_goods_config', 'assets/config/trading_goods.json');
@@ -25,19 +26,26 @@ Preloader.prototype = {
     this.load.image('icon_circuit_board', 'assets/images/icon_circuit_board.png');
     this.load.image('icon_solar_cell', 'assets/images/icon_solar_cell.png');
     this.load.image('icon_metal', 'assets/images/icon_metal.png');
-    
+
     this.load.image('icon_plus', 'assets/images/icon_plus.png');
     this.load.image('icon_minus', 'assets/images/icon_minus.png');
 
     this.load.spritesheet('button', 'assets/images/button.png', 200, 40);
     this.load.spritesheet('button_small', 'assets/images/button_small.png', 40, 40);
-    this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+
+    this.load.audio('music', [
+      // 'assets/music/bu-a-banana-and-boats.ogg',
+      // 'assets/music/bu-a-drinking-toaster.ogg',
+      // 'assets/music/bu-a-towns-parks.ogg',
+      'assets/music/bu-hidden-demoscenes.ogg'
+    ]);
+
+    this.load.audio('sound_engine', 'assets/sounds/engine5.wav');
   },
 
-  create: function () {
-  },
+  create: function() {},
 
-  update: function () {
+  update: function() {
     if (!!this.ready & !!window.fontsLoaded) {
       this.game.config = {};
       this.game.config.ship = JSON.parse(this.game.cache.getText('ship_config'));
@@ -46,7 +54,7 @@ Preloader.prototype = {
     }
   },
 
-  onLoadComplete: function () {
+  onLoadComplete: function() {
     this.ready = true;
   }
 };
