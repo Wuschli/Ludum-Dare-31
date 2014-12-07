@@ -12,6 +12,7 @@ Preloader.prototype = {
 
     this.load.text('ship_config', 'assets/config/ship.json');
     this.load.text('trading_goods_config', 'assets/config/trading_goods.json');
+    this.load.text('crew_classes_config', 'assets/config/crew_classes.json');
     this.load.text('about', 'assets/texts/about.txt');
 
     this.load.image('unknown_portrait', 'assets/images/unknown_portrait.png');
@@ -50,6 +51,7 @@ Preloader.prototype = {
       this.game.config = {};
       this.game.config.ship = JSON.parse(this.game.cache.getText('ship_config'));
       this.game.config.tradingGoods = JSON.parse(this.game.cache.getText('trading_goods_config'));
+      this.game.config.crewClasses = JSON.parse(this.game.cache.getText('crew_classes_config'));
       this.game.state.start('Menu');
     }
   },

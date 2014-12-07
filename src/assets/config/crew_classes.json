@@ -1,0 +1,19 @@
+{
+  "crewClasses": [
+    "cook",
+    "engineer",
+    "trader"
+  ],
+  "cook": {
+    "display_name": "Cook"
+  },
+  "engineer": {
+    "display_name": "Engineer"
+  },
+  "trader": {
+    "display_name": "Trader"
+  },
+  "captain": {
+    "display_name": "Captain"
+  }
+}

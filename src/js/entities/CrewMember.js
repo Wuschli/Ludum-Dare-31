@@ -8,7 +8,7 @@ var CrewMember = function(game, crewMember) {
   this.infoBackground.anchor.x = 1;
 
   var lines = [
-    crewMember.name,
+    this.game.config.crewClasses[crewMember.class].display_name + ' ' + crewMember.name,
     crewMember.getAge() + ' years old',
   ];
 
