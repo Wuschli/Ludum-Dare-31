@@ -1,8 +1,7 @@
 {
   "crewClasses": [
     "cook",
-    "engineer",
-    "trader"
+    "engineer"
   ],
   "cook": {
     "display_name": "Cook"
