@@ -14,7 +14,7 @@
     "gulp-rename": "*",
     "gulp-minify-css": "*",
     "gulp-minify-html": "*",
-    "gulp-processhtml": "*",
+    "gulp-processhtml": "1.0.x",
     "gulp-jshint": "*",
     "gulp-uglify": "*",
     "gulp-connect": "*",
@@ -32,6 +32,7 @@
     "build": "node ./node_modules/gulp/bin/gulp.js build"
   },
   "dependencies": {
+    "chance": "^0.7.6",
     "moment": "^2.8.4"
   }
 }
